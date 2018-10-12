@@ -14,13 +14,17 @@ var a = require("./config");
 console.log(a.dev.name);
 console.log(a.prod.name);
 
+/*
 process.on('exit', (code) => {
   console.log(`即将退出，退出码：${code}`);
 });
+*/
+
 
 process.on('uncaughtException', (err) => {
-  fs.writeSync(1, `捕获到异常：${err}\n`);
+  console.log(`捕获到异常：${err}\n`);
 });
+
 
 
 
