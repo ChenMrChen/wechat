@@ -13,6 +13,7 @@ var a = require("./config");
 
 console.log(a.dev.name);
 console.log(a.prod.name);
+// console.log(process.env);
 
 /*
 process.on('exit', (code) => {
@@ -20,7 +21,11 @@ process.on('exit', (code) => {
 });
 */
 
+const path = require('path');
 
+console.log(path);
+
+/*
 process.on('uncaughtException', (err) => {
   console.log(`捕获到异常：${err}\n`);
 });
@@ -34,6 +39,6 @@ parseString(text, function (err, result) {
      console.log("id: " + obj.title);
 });
 
-
+*/
 
 

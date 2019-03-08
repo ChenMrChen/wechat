@@ -10,6 +10,7 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "@ui5/webcomponents": "^0.7.0",
     "babel-core": "^6.26.0",
     "body-parser": "^1.17.2",
     "concat-stream": "^1.6.0",

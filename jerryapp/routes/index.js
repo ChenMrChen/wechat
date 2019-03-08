@@ -72,7 +72,7 @@ module.exports = function (app) {
       if( config.useRedis) {
         var client = require('redis').createClient(process.env.REDIS_URL);
       }
-      res.send("Hello World");
+      res.send("Hello World in index.js");
     }
   });
 
