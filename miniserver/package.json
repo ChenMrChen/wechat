@@ -12,6 +12,7 @@
     "express": "^4.16.4",
     "morgan": "^1.9.1",
     "socket.io": "^2.2.0",
-    "websocket": "^1.0.28"
+    "websocket": "^1.0.28",
+    "redis": "^2.8.0"
   }
 }
