@@ -7,7 +7,7 @@ var redis = require("redis"),
 console.log("Redis connection to SCP server has been established.");
 
 client.on("error", function (err) {
-    console.log("Trouble......... Redis startup failed: " + err);
+    console.log("Redis has meet with some trouble: " + err);
 });
 
 function insertIntoList(sOpenId, oElement){
@@ -46,21 +46,26 @@ function getListContent(sOpenId){
      });
 }
 
+function test(callback){
+    client.set("string key", "string val", redis.print);
+    client.hset("hash key", "hashtest 1", "some value", redis.print);
+    client.hset(["hash key", "hashtest 2", "some other value"], redis.print);
+    client.hkeys("hash key", function (err, replies) {
+        console.log(replies.length + " replies:");
+        replies.forEach(function (reply, i) {
+            console.log("    " + i + ": " + reply);
+        });
+    client.quit();
+    callback();
+    });
+}
+
 var oRedisClient = {
 	insert: insertIntoList,
 	clearList: clearList,
-	getList: getListContent
+	getList: getListContent,
+    test: test
 };
 
-// module.exports = oRedisClient;
+module.exports = oRedisClient;
 
-client.set("string key", "string val", redis.print);
-client.hset("hash key", "hashtest 1", "some value", redis.print);
-client.hset(["hash key", "hashtest 2", "some other value"], redis.print);
-client.hkeys("hash key", function (err, replies) {
-    console.log(replies.length + " replies:");
-    replies.forEach(function (reply, i) {
-        console.log("    " + i + ": " + reply);
-    });
-    client.quit();
-});

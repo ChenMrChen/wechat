@@ -1,6 +1,6 @@
 ---
 applications:
-- name: jerry demo server
+- name: jerry-demo-server
   memory: 56MB
   instances: 1
   timeout: 600
