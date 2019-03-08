@@ -1,8 +1,8 @@
 var heroku = "redis://h:p99a8dd0d92871b9ffe7a026e6d70beecd7f2a0e743fa1e2840a58ce048f41c4a@ec2-34-237-158-248.compute-1.amazonaws.com:9479";
 
-var scp = "redis://10.11.241.43:50431";
+var scp = "redis://i042416:IF5X3bKPRt7Mu4Lk@10.11.241.43:50431";
 var redis = require("redis"),
-	client = redis.createClient("50431", "10.11.241.43"); // by default localhost will be used!!
+	client = redis.createClient(scp); // by default localhost will be used!!
 
 console.log("Redis connection to SCP server has been established.");
 
