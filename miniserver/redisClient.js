@@ -4,9 +4,8 @@ var scp = "redis://10.11.241.43:50431";
 var redis = require("redis"),
 	client = redis.createClient(scp); // by default localhost will be used!!
 
-console.log("ok");
+console.log("Redis connection to SCP server has been established.");
 
-/*
 client.on("error", function (err) {
     console.log("Trouble......... Redis startup failed: " + err);
 });
@@ -47,29 +46,21 @@ function getListContent(sOpenId){
      });
 }
 
-function formatToWechat(raw){
-    var formatted = "[" + raw + "]";
-    var result = "";
-    var logs = JSON.parse(formatted);
-    for( var i = 0; i < logs.length; i++){
-        var record = "record[" + i + "]:" + " [[from]] " + logs[i].from
-         + " [[to]] " + logs[i].to + " [[sendTime]] " + logs[i].sendTime + " [[question]] " + logs[i].question
-        + " [[answer]] " + logs[i].answer;
-        if( i === 0){
-            result = record;
-        }
-        else{
-            result = result + "\n" + "\n" + record;
-        }
-    }
-    return result;
-}
-
 var oRedisClient = {
 	insert: insertIntoList,
 	clearList: clearList,
 	getList: getListContent
 };
 
-module.exports = oRedisClient;
-*/
+// module.exports = oRedisClient;
+
+client.set("string key", "string val", redis.print);
+client.hset("hash key", "hashtest 1", "some value", redis.print);
+client.hset(["hash key", "hashtest 2", "some other value"], redis.print);
+client.hkeys("hash key", function (err, replies) {
+    console.log(replies.length + " replies:");
+    replies.forEach(function (reply, i) {
+        console.log("    " + i + ": " + reply);
+    });
+    client.quit();
+});

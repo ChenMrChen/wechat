@@ -2,10 +2,18 @@ var app = require('express')();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
-server.listen(8880);
+server.listen(8080);
+
+function print_env(){
+  console.log(process.env);
+}
 
 app.get('/', function (req, res) {
-  res.sendFile(__dirname + '/index.html');
+
+  print_env();
+  // res.sendFile(__dirname + '/index.html');
+  var response = JSON.stringify(process.env);
+  res.send(response);
 });
 
 io.on('connection', function (socket) {
