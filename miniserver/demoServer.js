@@ -9,8 +9,9 @@ app.get('/', function (req, res) {
 });
 
 io.on('connection', function (socket) {
-  socket.emit('messages', { hello: 'world' });
+  console.log("connect comming from client: " + socket.id);
+  socket.emit('messages_jerry', { hello: 'world greeting from Server!' });
   socket.on('messages', function (data) {
-    console.log(data);
+    console.log("data received from Client:" + JSON.stringify(data,2,2));
   });
 });
