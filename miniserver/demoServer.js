@@ -1,8 +1,9 @@
 var app = require('express')();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
+var port = 56712;
 
-server.listen(8080);
+server.listen(port);
 
 function print_env(){
   console.log(process.env);
@@ -10,11 +11,11 @@ function print_env(){
 
 app.get('/', function (req, res) {
 
-  var response = "Hello World";
+  var response = "Hello World: " + port;
   res.send(response);
 });
 
-app.get('/', function (req, res) {
+app.get('/env', function (req, res) {
 
   print_env();
   // res.sendFile(__dirname + '/index.html');
