@@ -12,8 +12,9 @@
   "dependencies": {
     "express": "^4.16.4",
     "morgan": "^1.9.1",
+    "redis": "^2.8.0",
+    "request": "^2.88.0",
     "socket.io": "^2.2.0",
-    "websocket": "^1.0.28",
-    "redis": "^2.8.0"
+    "websocket": "^1.0.28"
   }
 }
