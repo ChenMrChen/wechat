@@ -26,8 +26,8 @@ app.get('/redis', function (req, res) {
 
   var redisClient = require("./redisClient");
   
-  function callback(){
-  	var response = "ok";//JSON.stringify(process.env);
+  function callback(response){
+  	// var response = "ok";//JSON.stringify(process.env);
   	res.send(response);
   }
   redisClient.test(callback);

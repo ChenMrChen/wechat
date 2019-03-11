@@ -51,12 +51,15 @@ function test(callback){
     client.hset("hash key", "hashtest 1", "some value", redis.print);
     client.hset(["hash key", "hashtest 2", "some other value"], redis.print);
     client.hkeys("hash key", function (err, replies) {
+        var replyForBrowser = "Hash entry size: " + replies.length;
         console.log(replies.length + " replies:");
         replies.forEach(function (reply, i) {
             console.log("    " + i + ": " + reply);
+            replyForBrowser = replyForBrowser + "\n" + "index: " + i + " value: "
+             + reply;
         });
-    client.quit();
-    callback();
+        client.quit();
+        callback(replyForBrowser);
     });
 }
 
