@@ -20,6 +20,7 @@ function print_env(){
 
 app.get('/', function (req, res) {
 
+  res.header("Access-Control-Allow-Origin", "*");
   var response = "Hello World";
   res.send(response);
 });

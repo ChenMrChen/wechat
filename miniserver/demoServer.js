@@ -1,8 +1,10 @@
 var app = require('express')();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
-var port = 56712;
+var defaultPort = 8081;
+//var port = 8080;
 
+var port = process.env.PORT || defaultPort;
 server.listen(port);
 
 function print_env(){
@@ -11,6 +13,7 @@ function print_env(){
 
 app.get('/', function (req, res) {
 
+  res.header("Access-Control-Allow-Origin", "*");
   var response = "Hello World: " + port;
   res.send(response);
 });

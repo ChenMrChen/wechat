@@ -4,6 +4,9 @@ var url = "https://localhost:8080/env";
 
 // url = "https://www.baidu.com";
 
+var scp = "https://jerry-demo-server.cfapps.eu10.hana.ondemand.com/env";
+
+url = scp;
 var getTokenOptions = {
         url: url,
         method: "GET",

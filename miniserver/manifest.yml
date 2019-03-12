@@ -6,3 +6,5 @@ applications:
   timeout: 600
   buildpack: nodejs_buildpack
   command: node demoServer.js
+  env:
+    my_env_var: hello
