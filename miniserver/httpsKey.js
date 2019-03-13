@@ -1,11 +1,18 @@
 var app = require('express')();
-var server = require('http').Server(app);
-var io = require('socket.io')(server);
-var defaultPort = 8081;
-//var port = 8080;
+var fs    = require('fs');
+var https = require('https');
 
-var port = process.env.PORT || defaultPort;
-server.listen(port);
+var httpOptions =  {
+  pfx: fs.readFileSync('keys/1.pfx'),
+  passphrase: '1'
+};
+
+var server = https.createServer(httpOptions, app);
+var io = require('socket.io')(server);
+
+console.log("https server listens on port 8080...");
+
+server.listen(8080);
 
 function print_env(){
   console.log(process.env);
@@ -14,7 +21,7 @@ function print_env(){
 app.get('/', function (req, res) {
 
   res.header("Access-Control-Allow-Origin", "*");
-  var response = "Hello World: " + port + " custom variable: " + process.env.my_env_var;
+  var response = "Hello World";
   res.send(response);
 });
 
