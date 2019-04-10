@@ -71,4 +71,3 @@ var oRedisClient = {
 };
 
 module.exports = oRedisClient;
-
