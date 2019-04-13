@@ -3,7 +3,7 @@ var jsdom = require("jsdom");
 var JSDOM = jsdom.JSDOM;
 const PREFIX = "https://www.jianshu.com";
 const PAGE = "https://www.jianshu.com/u/99b8712e8850?order_by=shared_at&page=";
-const MAX = 100;
+const MAX = 1;
 
 var mArticleResult = new Map();
 var pageNumber;
@@ -69,6 +69,7 @@ function getArticles(pageOptions, pageNumber) {
                     console.log("url: " + wholeURL);
                     if( mArticleResult.has(grand.text)){
                       lastPageReached = true;
+                      console.log("article size: " + mArticleResult.size());
                       resolve(pageNumber);
                     }
                     mArticleResult.set(grand.text, wholeURL);
