@@ -3,7 +3,7 @@ var jsdom = require("jsdom");
 var JSDOM = jsdom.JSDOM;
 const PREFIX = "https://www.jianshu.com";
 const PAGE = "https://www.jianshu.com/u/99b8712e8850?order_by=shared_at&page=";
-const MAX = 1;
+const MAX = 2;
 
 var mArticleResult = new Map();
 var pageNumber;
@@ -19,7 +19,7 @@ var aHandlers = [];
 for(var i = 0; i < MAX; i++){
   pageNumber = i + 1;
   var url = PAGE + pageNumber;
-  console.log("current page: " + url);
+  // console.log("current page: " + url);
   var pageOptions = {
         url: url,
         method: "GET",
@@ -48,6 +48,10 @@ function getArticles(pageOptions, pageNumber) {
       var requestC = request.defaults({jar: true});
 
       requestC(pageOptions,function(error,response,body){
+        if( error){
+          console.log("error: " + error);
+          resolve(error);
+        }
         var document = new JSDOM(body).window.document;
         var content = document.getElementsByTagName("li");
 
@@ -69,7 +73,7 @@ function getArticles(pageOptions, pageNumber) {
                     console.log("url: " + wholeURL);
                     if( mArticleResult.has(grand.text)){
                       lastPageReached = true;
-                      console.log("article size: " + mArticleResult.size());
+                      console.log("article size: " + mArticleResult.size);
                       resolve(pageNumber);
                     }
                     mArticleResult.set(grand.text, wholeURL);
