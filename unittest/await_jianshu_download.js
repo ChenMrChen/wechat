@@ -10,38 +10,8 @@ var pageNumber;
 /* a given article: https://www.jianshu.com/p/963cd23fb092
   value got from API: /p/5c1d0319dc42
 */
-var lastPageReached = false;
+
 var url = "";
-
-var aHandlers = [];
-
-// use limited for loop to ease testing
-for(var i = 0; i < MAX; i++){
-  pageNumber = i + 1;
-  var url = PAGE + pageNumber;
-  // console.log("current page: " + url);
-  var pageOptions = {
-        url: url,
-        method: "GET",
-        headers: {
-            "Accept": "text/html"
-        }
-  };
-  aHandlers.push(getArticles(pageOptions, pageNumber));
-  if( lastPageReached)
-    break;
-}
-
-console.log("promise handler size: " + aHandlers.length);
-
-Promise.all(aHandlers).then(function(){
-  var articleIndex = 0;
-  for (var [key, value] of mArticleResult) {
-    console.log("Article[" + articleIndex++ + "]: " + key + " = " + value);
-  }
-  console.log("done");
-}
-  );
 
 // wrap a request execution in promise
 
@@ -89,15 +59,26 @@ function getArticles(pageOptions, pageNumber) {
      });
 }
 
-async function downloadArticle(){
+async function downloadArticle(pageNumber){
+  var url = PAGE + pageNumber;
+  console.log("current page: " + url);
+  var pageOptions = {
+        url: url,
+        method: "GET",
+        headers: {
+            "Accept": "text/html"
+        }
+  };
+
   try{
-    var downloadedPage = await getArticles();
-        console.log('SHOULD WORK:');
-        console.log(html);
+    var downloadedPage = await getArticles(pageOptions, pageNumber);
+    console.log('downloaded Page number: ' + downloadedPage);
   }
   catch(error){
     console.error(error);
   }
 }
 
- 
+
+// main logic
+downloadArticle(1);
