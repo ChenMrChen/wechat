@@ -7,7 +7,7 @@ if( config.useRedis ) {
   var conversationLogService = require("./conversationLogService.js");
 }
 
-const url = "http://www.tuling123.com/openapi/api?key=de4ae9269c7438c33de5806562a35cac&info=";
+const url = "http://www.tuling123.com/openapi/api?key=b2060a25a15f41bdb8e4597a8f1c6dff&info=";
 
 module.exports = function(wholecontent, question, res){
   requesturl = url + encodeURI(question); 
